@@ -6,8 +6,6 @@ class AppRounter {
     print('The route is: ${settings.name}');
 
     switch (settings.name) {
-      case "/":
-        return HomeScreen.route();
       case HomeScreen.routeName:
         return HomeScreen.route();
       case LocationScreen.routeName:

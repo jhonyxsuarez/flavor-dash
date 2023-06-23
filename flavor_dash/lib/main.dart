@@ -1,9 +1,12 @@
-import 'package:flavor_dash/config/app_router.dart';
-import 'package:flavor_dash/screens/screens.dart';
+// import 'package:flavor_dash/config/config.dart';
+
 import 'package:flutter/material.dart';
 
+import 'config/app_router.dart';
+import 'config/theme.dart';
+
 void main(List<String> args) {
-  runApp(FlavorDash());
+  runApp(const FlavorDash());
 }
 
 ///Main App
@@ -14,10 +17,9 @@ class FlavorDash extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flavor Dash',
-      theme: ThemeData(primarySwatch: Colors.orange),
-      home: HomeScreen(),
+      theme: theme(),
       onGenerateRoute: AppRounter.onGenerateRoute,
-      initialRoute: HomeScreen.routeName,
+      initialRoute: '/',
     );
   }
 }
