@@ -1,9 +1,6 @@
-// import 'package:flavor_dash/config/config.dart';
-
+import 'package:flavor_dash/screens/location/location_screen.dart';
 import 'package:flutter/material.dart';
-
-import 'config/app_router.dart';
-import 'config/theme.dart';
+import 'config/config.dart';
 
 void main(List<String> args) {
   runApp(const FlavorDash());
@@ -19,7 +16,7 @@ class FlavorDash extends StatelessWidget {
       title: 'Flavor Dash',
       theme: theme(),
       onGenerateRoute: AppRounter.onGenerateRoute,
-      initialRoute: '/',
+      initialRoute: LocationScreen.routeName,
     );
   }
 }
