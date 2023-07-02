@@ -1,5 +1,7 @@
+import 'package:flavor_dash/widgets/gmap.dart';
+import 'package:flavor_dash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 ///Home Screen
 class LocationScreen extends StatelessWidget {
@@ -16,48 +18,56 @@ class LocationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height,
-              width: double.infinity,
-              child: GoogleMap(
-                  myLocationEnabled: true,
-                  initialCameraPosition:
-                      CameraPosition(target: LatLng(12, 10), zoom: 5)),
-            ),
-            LocationSearchBox()
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class LocationSearchBox extends StatelessWidget {
-  const LocationSearchBox({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: TextField(
-        decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.white,
-            hintText: 'Enter your location',
-            suffixIcon: Icon(Icons.search),
-            contentPadding:
-                const EdgeInsets.only(left: 20, bottom: 5, right: 5),
-            focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: Colors.white)),
-            enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: Colors.white))),
+      body: Stack(
+        children: [
+          Gmap(),
+          Positioned(
+              top: 50,
+              left: 20,
+              right: 20,
+              child: Row(
+                children: [
+                  SvgPicture.asset(
+                    'assets/logo.svg',
+                    width: 30,
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(child: LocationSearchBox()),
+                ],
+              )),
+          Positioned(
+              bottom: 50,
+              left: 20,
+              right: 20,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 70),
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(elevation: 3),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 15.0),
+                    child: Text('Confirm'),
+                  ),
+                ),
+              )),
+          Positioned(
+            top: 105,
+            right: 10,
+            child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                    elevation: 3,
+                    backgroundColor: Colors.white,
+                    shape: CircleBorder(),
+                    padding: EdgeInsets.all(10)),
+                child: Icon(
+                  Icons.my_location,
+                  color: Colors.grey,
+                )),
+          )
+        ],
       ),
     );
   }

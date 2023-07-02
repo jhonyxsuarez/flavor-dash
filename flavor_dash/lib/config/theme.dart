@@ -6,7 +6,7 @@ ThemeData theme() {
       colorScheme: ColorScheme(
           brightness: Brightness.light,
           primary: Color(0xFFE66410),
-          onPrimary: Colors.black,
+          onPrimary: Colors.white,
           secondary: Colors.green,
           onSecondary: Colors.green,
           error: Colors.red,
