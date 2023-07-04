@@ -1,6 +1,8 @@
+import 'package:flavor_dash/blocs/geolocation/geolocation_bloc.dart';
 import 'package:flavor_dash/widgets/gmap.dart';
 import 'package:flavor_dash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 ///Home Screen
@@ -20,7 +22,25 @@ class LocationScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          Gmap(),
+          Container(
+            height: MediaQuery.of(context).size.height,
+            child: BlocBuilder<GeolocationBloc, GeolocationState>(
+              builder: (context, state) {
+                if (state is GeolocationLoading) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state is GeolocationLoaded) {
+                  return Gmap(
+                    lat: state.position.latitude,
+                    lng: state.position.longitude,
+                  );
+                } else {
+                  return Text('Something went wrong');
+                }
+              },
+            ),
+          ),
           Positioned(
               top: 50,
               left: 20,
